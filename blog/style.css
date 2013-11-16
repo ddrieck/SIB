@@ -97,12 +97,11 @@ h5 {
 }
 
 #storieslist>h4 {
-	margin:  10px 1px;
+	margin: 4% 1%;
 }
 
 #heading {
     float:left; 
-    
     height: auto;
     font-family: 'league_gothicregular';
     font-size: 6em;
@@ -150,4 +149,29 @@ body {
     padding: 0% 3% 0% 3%;
     height: auto;
     max-width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    #article-list {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    #storieslist {
+        float: none;
+        width: 100%;
+    }
+    #top-nav {
+        float: left;
+        display: block;
+        margin-left: 0%;
+        margin-top: 0%;
+        width: 100%;
+    }
+    #heading {
+        font-size: 4em;
+    }
+    #storieslist>h4 {
+        margin: 2% .5%;
+    }
 }

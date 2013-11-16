@@ -13,7 +13,7 @@ a:link, a:visited {
 
 li {
 	list-style-type: none;
-	padding-left: 25px;
+	padding-left: 3%;
 	display: inline;
 }
 
@@ -32,15 +32,15 @@ h3 {
 }
 
 footer {
-	padding: 40px 0px 40px 0px;
-	margin-top: 25px;
+	padding: 4% 0% 4% 0%;
+	margin-top: 3%;
 }
 
 #navbar {
-	padding: 5px 0px 4px 0px;
-	margin: 10px 0px 25px 0px;
+	padding: 1% 0% .5% 0%;
+	margin: 2% 0% 3% 0%;
 	font-family: Georgia serif;
-	font-size: 22px;
+	font-size: 1.5em;
 	font-weight: 100;
 }
 
@@ -66,9 +66,27 @@ article {
 .header {
 	background-image: url('beans.jpg');
 	height: 85%;
-	padding-top: 30px;
+	padding-top: 5%;
 	background-size: contain;
 	width: 100%;
 }
 
+@media screen and (max-width: 600px){
+	article {
+		display: block;
+		width: 100%;
+		float: none;
+	}
 
+	p {
+		-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+	}
+
+	li {
+		display: block;
+		width: auto;
+		padding-left: 0px;
+	}
