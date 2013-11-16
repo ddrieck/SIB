@@ -19,7 +19,8 @@ var cart = [];
 $(".addtocart").on("click", function(){
 	var productClass = $(this).closest(".product");
 	var nameOfProduct = productClass.find("h2").text();
-	var skuOfProduct = productClass.data("sku");	
+	var skuOfProduct = productClass.data("sku");
+
 	if ($(".us").is(":visible")){
 		var priceOfProduct = productClass.find(".us").text();
 	} else {
@@ -38,13 +39,26 @@ $(".addtocart").on("click", function(){
 
 	function refreshCart(){
 		total = 0;
+		$("#cart").empty();
+
 		for(var i = 0; i < cart.length; i++) {
 	 			var cartItem = cart[i];
-	 			total += cartItem.price;
-			}
-		}	
+	 			var quantity = cartItem.quantity;
+	 			var price = cartItem.price;
+	 			var name = cartItem.name;
+	 			var sku = cartItem.sku;
+	 			var itemDiv = $("<div>").addClass("cart-item");
 
-	refreshCart(); // we need to write this.*/
+ 			if ($(".us").is(":visible")){
+ 				$("#cart").append(itemDiv).append("$" + price + " ").append(quantity + " ").append(name + " ").append(sku + " ");
+ 					} else {
+ 					$("#cart").append(itemDiv).append("\u20AC" + price + " ").append(quantity + " ").append(name + " ").append(sku + " ");
+ 					}
+ 			total += cartItem.price;
+		 		}	
+			}	
+
+	refreshCart();
 	
 	if ($(".us").is(":visible")){
 		$(".cart-total").text("Total $" + total);
