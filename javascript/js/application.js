@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	alert("Page Loaded!");
+
+	//alert("Page Loaded!");
 	//$(".product").find("img").fadeOut(2000);
 	$(".details").on("click", function(){
 		$(this).parent().find(".description").slideToggle();
@@ -43,6 +44,7 @@ $(".addtocart").on("click", function(){
 	//Use indexOf of the string to see if the object already exists in array. If so push cartItem.
 	if (cartArrayString.indexOf(skuOfProduct) === -1 || cart.length === 0){
 			cart.push(cartItem);
+			$("#checkout").removeAttr("disabled");
 	} else {
 		//Use grep to search array and find where sku matches button click. Add one to quantity of found object.
 		var cartSearch = $.grep(cart, function(n, i){
@@ -89,5 +91,43 @@ $(".addtocart").on("click", function(){
 		}
 
 }); //end of on click function
+
+//Checkout event handler
+var publicToken = "pk_test_0zov70ZpodhcerncFctUkrWZ";
+
+   $('#checkout').click(function(){
+	   	var descriptionArray = [];
+		for(var i=0;i<cart.length;i++) {
+		   var cartItem = cart[i];
+		   var sku = cartItem.sku;
+		   var quantity = cartItem.quantity;
+
+		   descriptionArray.push(sku);
+		   descriptionArray.push(quantity);
+		}
+
+		console.log(token);
+
+      var token = function(res){
+    		$.post("/charge",{
+		        token: res.id,
+		        amount: total * 100,
+		        description: descriptionArray.join(", "), 
+		      });
+      };
+
+      StripeCheckout.open({
+        key:         publicToken,
+        address:     true,
+        amount:      total * 100,
+        currency:    'usd',
+        name:        'T-Shirts',
+        description: "One or more t-shirts",
+        panelLabel:  'Checkout',
+        token:       token
+      });
+
+      return false;
+    });
 
 }); //end of jquery
